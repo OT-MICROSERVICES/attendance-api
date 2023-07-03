@@ -1,3 +1,7 @@
+"""
+Module for calling the main flask application.
+The application will be only supported with Flask and Gunicorn.
+"""
 from flask import Flask, json
 from router.attendance import route as create_record
 from utils.json_encoder import DataclassJSONEncoder
