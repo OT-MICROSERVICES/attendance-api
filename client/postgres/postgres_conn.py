@@ -1,31 +1,17 @@
 """
 Module for postgres related methods and class
 """
+# pylint: disable=import-error,unnecessary-lambda
 import os
 from collections import OrderedDict
 from typing import List
 import yaml
 import psycopg2
-import redis
 from models.message import CustomMessage, HealthMessage
 from models.user_info import EmployeeInfo
+from client.redis import MiddlewareSDKFacade
 
 CONFIG_FILE = os.getenv('CONFIG_FILE', 'config.yaml')
-
-def redis_status():
-    """Function for getting the health of redis"""
-    try:
-        with open(CONFIG_FILE, 'r', encoding="utf-8") as config_file:
-            yaml_values = yaml.load(config_file, Loader=yaml.FullLoader)
-        redis_client = redis.Redis(host=yaml_values['redis']['host'],
-                                   port=yaml_values['redis']['port'],
-                                   password=yaml_values['redis']['password'],
-                                   decode_responses=True)
-        redis_client.ping()
-        return "up"
-    except redis.ConnectionError:
-        return "down"
-
 
 class CorePostgresClient:
     """Class for defining the interface for Postgres Client"""
@@ -85,14 +71,14 @@ class CorePostgresClient:
             return HealthMessage(
                 message="Attendance API is running fine and ready to serve requests",
                 postgresql="up",
-                redis=redis_status(),
+                redis=MiddlewareSDKFacade.cache.redis_status(),
                 status="up",
             ), 200
         except psycopg2.OperationalError:
             return HealthMessage(
                 message="Attendance API is not healthy, please check logs",
                 postgresql="down",
-                redis=redis_status(),
+                redis=MiddlewareSDKFacade.cache.redis_status(),
                 status="down",
             ), 400
 

@@ -10,8 +10,9 @@ Module for all the application routes and their respective handlers
 # pylint: disable=import-error,invalid-name,redefined-builtin
 from flask import Blueprint, jsonify, request
 from voluptuous import Schema, Required
-from client import PostgresSDKFacade
+from client.postgres import DatabaseSDKFacade
 from utils.validator import data_validator
+from router.cache import cache
 
 route = Blueprint("attendance", __name__)
 
@@ -33,33 +34,35 @@ def create_record(
         date: str,
 ):
     """Function for creating the record in the database"""
-    record = PostgresSDKFacade.database.create_employee_attendance(id, name, status, date)
+    record = DatabaseSDKFacade.database.create_employee_attendance(id, name, status, date)
     return jsonify(record)
 
 @route.route("/attendance/search", methods=["GET"])
+@cache.cached(timeout=20)
 def read_record():
     """Function for reading the record from the database"""
     args = request.args
     id = args.get("id", default="", type=str)
     if id != "":
-        record = PostgresSDKFacade.database.read_employee_attendance(id)
+        record = DatabaseSDKFacade.database.read_employee_attendance(id)
         return jsonify(record)
     return jsonify({"message": f"Unable to process request, please check query params {id}"}), 400
 
 @route.route("/attendance/search/all", methods=["GET"])
+@cache.cached(timeout=20)
 def read_all_record():
     """Function for reading all the record from the database"""
-    record = PostgresSDKFacade.database.read_all_employee_attendance()
+    record = DatabaseSDKFacade.database.read_all_employee_attendance()
     return jsonify(record)
 
 @route.route("/attendance/health/detail", methods=["GET"])
 def get_detail_healthcheck():
     """Function for getting detailed healthcheck of application"""
-    status, status_code = PostgresSDKFacade.database.attendance_detail_health()
+    status, status_code = DatabaseSDKFacade.database.attendance_detail_health()
     return jsonify(status), status_code
 
 @route.route("/attendance/health", methods=["GET"])
 def get_healthcheck():
     """Function for getting healthcheck of application"""
-    status, status_code = PostgresSDKFacade.database.attendance_health()
+    status, status_code = DatabaseSDKFacade.database.attendance_health()
     return jsonify(status), status_code
