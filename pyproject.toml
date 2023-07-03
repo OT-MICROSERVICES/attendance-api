@@ -17,6 +17,7 @@ jsonformatter = "^0.3.2"
 python-json-logger = "^2.0.7"
 flask-caching = "^2.0.2"
 prometheus-flask-exporter = "^0.22.4"
+flasgger = "0.9.7b2"
 
 [tool.poetry.group.dev.dependencies]
 Flask = "^2.3.2"
