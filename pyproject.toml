@@ -14,6 +14,7 @@ voluptuous = "^0.13.1"
 redis = "^4.6.0"
 json-logging-py = "^0.2"
 jsonformatter = "^0.3.2"
+python-json-logger = "^2.0.7"
 
 [tool.poetry.group.dev.dependencies]
 Flask = "^2.3.2"
