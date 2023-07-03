@@ -213,6 +213,35 @@ files = [
 ]
 
 [[package]]
+name = "prometheus-client"
+version = "0.17.0"
+description = "Python client for the Prometheus monitoring system."
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "prometheus_client-0.17.0-py3-none-any.whl", hash = "sha256:a77b708cf083f4d1a3fb3ce5c95b4afa32b9c521ae363354a4a910204ea095ce"},
+    {file = "prometheus_client-0.17.0.tar.gz", hash = "sha256:9c3b26f1535945e85b8934fb374678d263137b78ef85f305b1156c7c881cd11b"},
+]
+
+[package.extras]
+twisted = ["twisted"]
+
+[[package]]
+name = "prometheus-flask-exporter"
+version = "0.22.4"
+description = "Prometheus metrics exporter for Flask"
+optional = false
+python-versions = "*"
+files = [
+    {file = "prometheus_flask_exporter-0.22.4-py3-none-any.whl", hash = "sha256:e130179c26d5a9b903c12c0d8826127ae491b04b298cae0b92b98677dcf2c06f"},
+    {file = "prometheus_flask_exporter-0.22.4.tar.gz", hash = "sha256:959b69f1e740b6736ea53fe5f28dc2ab6229b2ebeade6582b3dbb5d74c7d58e4"},
+]
+
+[package.dependencies]
+flask = "*"
+prometheus-client = "*"
+
+[[package]]
 name = "psycopg2"
 version = "2.9.6"
 description = "psycopg2 - Python-PostgreSQL Database Adapter"
@@ -343,4 +372,4 @@ watchdog = ["watchdog (>=2.3)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "477cfe3c5511c9ff4b393fdf78f99005f9669ec6f7841508b872376668af84e0"
+content-hash = "8a2520e80dfe2acd6302cccd91b3665d2ef0be9890f5c2e1852c4209c7ae443e"
