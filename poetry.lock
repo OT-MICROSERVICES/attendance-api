@@ -98,6 +98,26 @@ MarkupSafe = ">=2.0"
 i18n = ["Babel (>=2.7)"]
 
 [[package]]
+name = "json-logging-py"
+version = "0.2"
+description = "JSON / Logstash formatters for Python logging"
+optional = false
+python-versions = "*"
+files = [
+    {file = "json-logging-py-0.2.tar.gz", hash = "sha256:118b1fe1f4eacaea6370e5b9710d0f6d0c0a4599aef9d5b9875a6a579974fc9a"},
+]
+
+[[package]]
+name = "jsonformatter"
+version = "0.3.2"
+description = "Python log in json format."
+optional = false
+python-versions = ">=2.7"
+files = [
+    {file = "jsonformatter-0.3.2.tar.gz", hash = "sha256:d69c4b294cd9030b6803659924908f979ae827f5bdccde6a3815c0afb062948f"},
+]
+
+[[package]]
 name = "markupsafe"
 version = "2.1.3"
 description = "Safely add untrusted strings to HTML/XML markup."
@@ -286,4 +306,4 @@ watchdog = ["watchdog (>=2.3)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "1fc3402c7e783d4bd13dbb925e4f7503e5d6ffb009beea44fdc9080a372afc2c"
+content-hash = "243e23e5d044dbeecfcafdfaf9c5554dd695efd764616547889604dc00340481"

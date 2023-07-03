@@ -12,6 +12,8 @@ python = "^3.11"
 peewee = "^3.16.2"
 voluptuous = "^0.13.1"
 redis = "^4.6.0"
+json-logging-py = "^0.2"
+jsonformatter = "^0.3.2"
 
 [tool.poetry.group.dev.dependencies]
 Flask = "^2.3.2"
