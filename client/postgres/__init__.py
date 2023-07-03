@@ -5,9 +5,10 @@ Module for client SDK of Postgres and respective actions.
 - Read all records
 - Healthcheck for application
 """
-from client.postgres import CorePostgresClient
+# pylint: disable=import-error
+from client.postgres.postgres_conn import CorePostgresClient
 
 # pylint: disable=too-few-public-methods
-class PostgresSDKFacade:
+class DatabaseSDKFacade:
     """Class wrapper method for client db related actions"""
     database = CorePostgresClient()
