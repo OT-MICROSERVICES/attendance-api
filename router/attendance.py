@@ -1,7 +1,17 @@
+"""
+Module for all the application routes and their respective handlers
+- create_record
+- read_record
+- read_all_record
+- get_detail_healthcheck
+- get_healthcheck
+"""
+
+# pylint: disable=import-error,invalid-name,redefined-builtin
 from flask import Blueprint, jsonify, request
+from voluptuous import Schema, Required
 from client import PostgresSDKFacade
 from utils.validator import data_validator
-from voluptuous import Schema, Required
 
 route = Blueprint("attendance", __name__)
 
@@ -22,11 +32,13 @@ def create_record(
         status: str,
         date: str,
 ):
+    """Function for creating the record in the database"""
     record = PostgresSDKFacade.database.create_employee_attendance(id, name, status, date)
     return jsonify(record)
 
 @route.route("/attendance/search", methods=["GET"])
 def read_record():
+    """Function for reading the record from the database"""
     args = request.args
     id = args.get("id", default="", type=str)
     if id != "":
@@ -36,15 +48,18 @@ def read_record():
 
 @route.route("/attendance/search/all", methods=["GET"])
 def read_all_record():
+    """Function for reading all the record from the database"""
     record = PostgresSDKFacade.database.read_all_employee_attendance()
     return jsonify(record)
 
 @route.route("/attendance/health/detail", methods=["GET"])
 def get_detail_healthcheck():
+    """Function for getting detailed healthcheck of application"""
     status, status_code = PostgresSDKFacade.database.attendance_detail_health()
     return jsonify(status), status_code
 
 @route.route("/attendance/health", methods=["GET"])
 def get_healthcheck():
+    """Function for getting healthcheck of application"""
     status, status_code = PostgresSDKFacade.database.attendance_health()
     return jsonify(status), status_code

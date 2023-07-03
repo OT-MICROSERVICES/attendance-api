@@ -1,3 +1,8 @@
+"""
+Module for custom json log model in flask and gunicorn
+"""
+# pylint: disable=invalid-name
+
 import json
 
 bind = '0.0.0.0:8080'
@@ -18,4 +23,3 @@ access_log_format = json.dumps({
     'user_agent': r'%(a)s',
     'request_time_seconds': r'%(L)s',
 })
-
