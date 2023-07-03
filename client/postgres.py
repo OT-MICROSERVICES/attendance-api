@@ -70,7 +70,7 @@ class CorePostgresClient:
             message=f"Successfully created the record for the employee id: ${id}"
         )
 
-    def attendance_health(self):
+    def attendance_detail_health(self):
         try:
             cursor = self.client.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
             cursor.execute("SELECT id, name, status, date FROM records LIMIT 1")
@@ -86,4 +86,16 @@ class CorePostgresClient:
                 postgresql="down",
                 redis=redis_status(),
                 status="down",
+            ), 400
+
+    def attendance_health(self):
+        try:
+            cursor = self.client.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+            cursor.execute("SELECT id, name, status, date FROM records LIMIT 1")
+            return CustomMessage(
+                message="Attendance API is running fine and ready to serve requests",
+            ), 200
+        except psycopg2.OperationalError:
+            return CustomMessage(
+                message="Attendance API is not running in complete healthy state, please check logs",
             ), 400

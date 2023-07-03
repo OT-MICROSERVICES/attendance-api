@@ -39,6 +39,11 @@ def read_all_record():
     record = PostgresSDKFacade.database.read_all_employee_attendance()
     return jsonify(record)
 
+@route.route("/attendance/health/detail", methods=["GET"])
+def get_detail_healthcheck():
+    status, status_code = PostgresSDKFacade.database.attendance_detail_health()
+    return jsonify(status), status_code
+
 @route.route("/attendance/health", methods=["GET"])
 def get_healthcheck():
     status, status_code = PostgresSDKFacade.database.attendance_health()
