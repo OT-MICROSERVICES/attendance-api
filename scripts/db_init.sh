@@ -1,6 +1,8 @@
-CREATE TABLE records(
-   id TEXT PRIMARY KEY     NOT NULL,
-   name           TEXT    NOT NULL,
-   status         TEXT     NOT NULL,
-   date           DATE
-);
+#!/usr/bin/env bash
+
+POSTGRESQL_USERNAME="${POSTGRESQL_USERNAME:=postgres}"
+PGPASSWORD="${PGPASSWORD:=password}"
+POSTGRESQL_HOST="${POSTGRESQL_HOST:=localhost}"
+
+PGPASSWORD=${PGPASSWORD} psql -U "${POSTGRESQL_USERNAME}" -h "${POSTGRESQL_HOST}" -c 'create database attendance_db;'
+PGPASSWORD=${PGPASSWORD} psql -U "${POSTGRESQL_USERNAME}" -h "${POSTGRESQL_HOST}"  -c 'CREATE TABLE records(id TEXT PRIMARY KEY NOT NULL, name TEXT NOT NULL, status TEXT NOT NULL, date DATE);'
