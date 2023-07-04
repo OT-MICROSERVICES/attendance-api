@@ -79,3 +79,18 @@ Once the database and table is initialized, we can run the application by:
 gunicorn app:app --log-config log.conf -b 0.0.0.0:8080
 ```
 
+## Endpoints Information
+
+| **Endpoint**                     | **Method** | **Description**                                                                                      |
+|----------------------------------|------------|------------------------------------------------------------------------------------------------------|
+| /metrics                         | GET        | Application healthcheck and performance metrics are available on this endpoint                       |
+| /apidocs                         | GET        | Swagger endpoint for the application API documentation and their data models                         |
+| /api/v1/attendance/create        | POST       | Data creation endpoint which accepts certain JSON body to add attendance information in database     |
+| /api/v1/attendance/search        | GET        | Endpoint for searching data information using the params in the URL                                  |
+| /api/v1/attendance/search/all    | GET        | Endpoint for searching all information across the system                                             |
+| /api/v1/attendance/health        | GET        | Endpoint for providing shallow healthcheck information about application health and readiness        |
+| /api/v1/attendance/health/detail | GET        | Endpoint for providing detailed health check about dependencies as well like - PostgresSQL and Redis |
+
+## Contact Information
+
+[Opstree Opensource](mailto:opensource@opstree.com)
