@@ -8,7 +8,7 @@ Module for all the application routes and their respective handlers
 """
 
 # pylint: disable=import-error,invalid-name,redefined-builtin
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, route
 from voluptuous import Schema, Required
 from client.postgres import DatabaseSDKFacade
 from utils.validator import data_validator
