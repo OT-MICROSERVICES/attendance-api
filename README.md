@@ -24,6 +24,6 @@ Poetry will be used as package manager to install specific versions module on de
 
 ## Architecture
 
-![](./static/employee.png)
+![](./static/attendance.png)
 
 ## Application
