@@ -23,3 +23,7 @@ The attendance api application have some database and package manager dependenci
 Poetry will be used as package manager to install specific versions module on dependencies to run the attendance API.
 
 ## Architecture
+
+![](./static/employee.png)
+
+## Application
