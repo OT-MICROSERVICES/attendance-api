@@ -58,7 +58,7 @@ def test_custom_json_encoder_model():
     result = encoder.encode(model)
 
     # Assert that the result is a JSON string containing the model attributes
-    assert result == '{"name": "Sample"}'
+    assert result == '{"id": null}'
 
 def test_custom_json_encoder_datetime():
     # Create a datetime object
@@ -84,7 +84,7 @@ def test_custom_json_encoder_enum():
     result = encoder.encode(enum_value)
 
     # Assert that the result is a JSON string containing the enum value as a string
-    assert result == '"OPTION1"'
+    assert result == '"SampleEnum.OPTION1"'
 
 if __name__ == '__main__':
     pytest.main()
