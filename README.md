@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./static/attendance-api-logo.svg" height="220" width="220">
+  <img src="./static/attendance-api-logo.svg" height="280" width="280">
 </p>
 
 Attendance REST API is a python based microservice which is responsible for all the attendance related transactions in the [OT-Microservices](https://github.com/OT-MICROSERVICES). This application supports cross-platform, the only thing will be required to run this application is python runtime modules.
@@ -19,6 +19,7 @@ The attendance api application have some database and package manager dependenci
 - [PostgresSQL](https://www.postgresql.org/)
 - [Redis](https://redis.io/)
 - [Poetry](https://python-poetry.org/)
+- [Liquibase](https://docs.liquibase.com/)
 
 Poetry will be used as package manager to install specific versions module on dependencies to run the attendance API.
 
@@ -59,18 +60,10 @@ The test cases are included for following modules and directories:-
 - models
 - utils
 
-For dev testing, the Swagger UI can be used for sample payload generation and requests. The swagger page will be accessible on http://localhost:8080/apidocs. Before running the application, we have to make sure our mandatory database (PostgresSQL) is up and running. Configuration properties will be configured inside [config.yaml](config.yaml) file.
+For dev testing, the Swagger UI can be used for sample payload generation and requests. The swagger page will be accessible on http://localhost:8080/apidocs. Before running the application, we have to make sure our mandatory database (PostgresSQL) is up and running. Configuration properties will be configured inside [config.yaml](config.yaml) file. Also, once the property file is defined and configured properly, we need to run migrations to create database, schema etc. The connection details for migration is available in [liquibase.properties](./liquibase.properties).
 
 ```shell
-./script/db_init.sh
-```
-
-Before running the database initialization script, make sure your environment variables are configured properly.
-
-```shell
-POSTGRESQL_USERNAME="${POSTGRESQL_USERNAME:=postgres}"
-PGPASSWORD="${PGPASSWORD:=password}"
-POSTGRESQL_HOST="${POSTGRESQL_HOST:=localhost}"
+make run-migrations
 ```
 
 Once the database and table is initialized, we can run the application by:
