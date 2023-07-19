@@ -16,3 +16,6 @@ docker-build:
 
 docker-push:
 	docker push ${IMAGE_REGISTRY}/${IMAGE_NAME}:${APP_VERSION}
+
+run-migrations:
+	liquibase update --driver-properties-file=liquibase.properties
